@@ -8,6 +8,9 @@
 
     <div id="score">0</div>
     <canvas id="snakeboard" width="400" height="400"></canvas>
+    <button type="button" onclick="restart()">Start!</button>
+    <button type="button" onclick="increase()">+</button>
+    <button type="button" onclick="decrease()">-</button>
 
     <style>
       #snakeboard {
@@ -18,7 +21,7 @@
       }
       #score {
         text-align: center;
-        font-size: 140px;
+        font-size: 100px;
       }
     </style>
   </body>
@@ -53,9 +56,10 @@
     // Return a two dimensional drawing context
     const snakeboard_ctx = snakeboard.getContext("2d");
     // Start game
-    main();
+    clear_board();
+    //main();
 
-    gen_food();
+    //gen_food();
 
     document.addEventListener("keydown", change_direction);
     
@@ -66,13 +70,13 @@
 
         changing_direction = false;
         setTimeout(function onTick() {
-        clear_board();
-        drawFood();
-        move_snake();
-        drawSnake();
-        // Repeat
-        main();
-      }, 100)
+            clear_board();
+            drawFood();
+            move_snake();
+            drawSnake();
+            // Repeat
+            main();
+        }, 100)
     }
     
     // draw a border around the canvas
@@ -191,6 +195,47 @@
         // Remove the last part of snake body
         snake.pop();
       }
+    }
+    
+    function restart() {
+        snake = [
+                    {x: 200, y: 200},
+                    {x: 190, y: 200},
+                    {x: 180, y: 200},
+                    {x: 170, y: 200},
+                    {x: 160, y: 200}
+                ]
+
+        score = 0;
+       
+        dx = 10;
+        dy = 0; 
+        
+        main();
+        
+        gen_food();
+    }
+    
+    function increase() {
+        var myCanvas = document.getElementById("snakeboard");
+        if (myCanvas.width > window.innerHeight-50) {
+            alert("Maximum size reached.");
+        } else {
+            myCanvas.width = myCanvas.width + 50;
+            myCanvas.height = myCanvas.height + 50;
+            clear_board();
+        }
+    }
+    
+    function decrease() {
+        var myCanvas = document.getElementById("snakeboard");
+        if (myCanvas.width == 250) {
+            alert("Minimum size reached.");
+        } else {
+            myCanvas.width = myCanvas.width - 50;
+            myCanvas.height = myCanvas.height - 50;
+            clear_board();
+        }
     }
     
   </script>
