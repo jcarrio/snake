@@ -1,2 +1,2 @@
 # snake
-Modified JavaScript snake game
+Modified JavaScript snake game 🐍
