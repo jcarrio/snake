@@ -1,2 +1,2 @@
 # snake
-Modified javascript snake game
+Modified JavaScript snake game
